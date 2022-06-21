@@ -49,6 +49,15 @@ const  rekordy = [
 const StudentGradeTable = () => {
     const [students, setStudents] = useState(rekordy);
 
+    const deleteStudent = (studentId) => {
+      console.log('Usuwanie studenta:' + studentId)
+
+        for (let i=0; i< students.length; i++){
+            if(students[i].id === studentId){
+                students.splice((i, 1));
+            }
+        }
+    }
     return(
         <div className={classes.StudentGradeTable}>
             <Grid container className={classes.NaglowekTabeli}>
@@ -73,7 +82,11 @@ const StudentGradeTable = () => {
                                 <Grid item xs={3}>{student.opis}</Grid>
                                 <Grid item xs={2}>{student.student}</Grid>
                                 <Grid item xs={2}>{student.nauczyciel}</Grid>
-                                <Grid item xs={1}/>
+                                <Grid item xs={1}>{
+                                    <button onClick={()=>{
+                                        deleteStudent(student.id)
+                                    }}>Delete</button>}
+                                </Grid>
                             </Grid>
 
                         )
